@@ -35,7 +35,7 @@ exports.book_delete_post = function (req, res) {
 };
 
 // Display book update form on GET
-exports.autor_update_get = function (req, res) {
+exports.book_update_get = function (req, res) {
   res.send("NOT IMPLEMENTED YET: book update GET");
 };
 
