@@ -1,41 +1,41 @@
-const BookInstance = require("../models/bookInstance");
+var BookInstance = require('../models/bookinstance');
 
-// Display list of all bookInstances.
-exports.bookInstance_list = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance list");
+// Display list of all BookInstances.
+exports.bookinstance_list = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance list');
 };
 
-// Display detaul page for a specific bookInstance.
-exports.bookInstance_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance detail: " + req.params.id);
+// Display detail page for a specific BookInstance.
+exports.bookinstance_detail = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance detail: ' + req.params.id);
 };
 
-// Display bookInstance create form on GET
-exports.bookInstance_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance create GET");
+// Display BookInstance create form on GET.
+exports.bookinstance_create_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance create GET');
 };
 
-// Handle bookInstance create POST
-exports.bookInstance_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance create POST");
+// Handle BookInstance create on POST.
+exports.bookinstance_create_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance create POST');
 };
 
-// Display bookInstance delete form on GET
-exports.bookInstance_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance delete GET");
+// Display BookInstance delete form on GET.
+exports.bookinstance_delete_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance delete GET');
 };
 
-// Handle bookInstance delete POST
-exports.bookInstance_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance delete POST");
+// Handle BookInstance delete on POST.
+exports.bookinstance_delete_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance delete POST');
 };
 
-// Display bookInstance update form on GET
-exports.bookInstance_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: bookInstance update GET");
+// Display BookInstance update form on GET.
+exports.bookinstance_update_get = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance update GET');
 };
 
-// Handle bookInstance delete on POST
-exports.bookInstance_update_post = function (req, res) {
-  res.send('NOT IMPLEMENTED YET: bookInstance update POST')
-}
+// Handle bookinstance update on POST.
+exports.bookinstance_update_post = function(req, res) {
+    res.send('NOT IMPLEMENTED: BookInstance update POST');
+};

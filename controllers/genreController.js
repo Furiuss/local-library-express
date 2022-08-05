@@ -31,7 +31,7 @@ exports.genre_delete_post = function (req, res) {
 };
 
 // Display genre update form on GET
-exports.autor_update_get = function (req, res) {
+exports.genre_update_get = function (req, res) {
   res.send("NOT IMPLEMENTED YET: genre update GET");
 };
 
