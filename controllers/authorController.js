@@ -31,7 +31,7 @@ exports.author_delete_post = function (req, res) {
 };
 
 // Display Author update form on GET
-exports.autor_update_get = function (req, res) {
+exports.author_update_get = function (req, res) {
   res.send("NOT IMPLEMENTED YET: Author update GET");
 };
 
