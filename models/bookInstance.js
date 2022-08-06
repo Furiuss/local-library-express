@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Schema for BookInstance model
-const BookInstanceSchema = mongoose.Schema({
+const BookInstanceSchema = new Schema({
   book: { type: Schema.Types.ObjectId, ref: "Book", required: true },
   imprint: { type: String, required: true },
   status: {
