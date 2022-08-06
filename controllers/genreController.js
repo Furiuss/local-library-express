@@ -1,4 +1,5 @@
 const Genre = require("../models/genre");
+const { body, validationResult } = require("express-validator");
 
 // Display list of all genres.
 exports.genre_list = function (req, res) {
@@ -12,13 +13,44 @@ exports.genre_detail = function (req, res) {
 
 // Display genre create form on GET
 exports.genre_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: genre create GET");
+  res.render("genre_form", { title: "Create Genre" });
 };
 
 // Handle genre create POST
-exports.genre_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED YET: genre create POST");
-};
+exports.genre_create_post = [
+  body("name", "Genre name required").trim().isLength({ min: 1 }).escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const genre = new Genre({ name: req.body.name });
+    if (!errors.isLength()) {
+      res.render("genre_form", {
+        title: "Create Genre",
+        genre,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      Genre.findOne({ name: req.body.name }).exec((err, found_genre) => {
+        if (err) {
+          return next(err);
+        }
+
+        if (found_genre) {
+          res.redirect(found_genre.url);
+        } else {
+          genre.save((err) => {
+            if (err) {
+              return next(err);
+            }
+            res.redirect(genre.url);
+          });
+        }
+      });
+    }
+  },
+];
 
 // Display genre delete form on GET
 exports.genre_delete_get = function (req, res) {
@@ -37,5 +69,5 @@ exports.genre_update_get = function (req, res) {
 
 // Handle genre delete on POST
 exports.genre_update_post = function (req, res) {
-  res.send('NOT IMPLEMENTED YET: genre update POST')
-}
+  res.send("NOT IMPLEMENTED YET: genre update POST");
+};
