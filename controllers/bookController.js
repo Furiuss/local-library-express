@@ -65,24 +65,40 @@ exports.book_create_get = function (req, res, next) {
   });
 };
 
-// Handle book create POST
+// Handle book create on POST.
 exports.book_create_post = [
-  body("title", "Title must not be empty").trim().isLength({ min: 1 }).escape(),
-  body("author", "Author must not be empty")
+  // Convert the genre to an array.
+  (req, res, next) => {
+    if (!Array.isArray(req.body.genre)) {
+      if (typeof req.body.genre === "undefined") req.body.genre = [];
+      else req.body.genre = [req.body.genre];
+    }
+    next();
+  },
+
+  // Validate and sanitize fields.
+  body("title", "Title must not be empty.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("summary", "Summary must not be empty")
+  body("author", "Author must not be empty.")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("summary", "Summary must not be empty.")
     .trim()
     .isLength({ min: 1 })
     .escape(),
   body("isbn", "ISBN must not be empty").trim().isLength({ min: 1 }).escape(),
   body("genre.*").escape(),
 
+  // Process request after validation and sanitization.
   (req, res, next) => {
+    // Extract the validation errors from a request.
     const errors = validationResult(req);
 
-    const book = new Book({
+    // Create a Book object with escaped and trimmed data.
+    var book = new Book({
       title: req.body.title,
       author: req.body.author,
       summary: req.body.summary,
@@ -91,6 +107,9 @@ exports.book_create_post = [
     });
 
     if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      // Get all authors and genres for form.
       async.parallel(
         {
           authors(callback) {
@@ -101,10 +120,13 @@ exports.book_create_post = [
           },
         },
         function (err, results) {
-          if (err) return next(err);
+          if (err) {
+            return next(err);
+          }
 
-          for (let i = 0; i < results.length; i++) {
-            if (book.genre.indexOf(results.genres[i]._id > -1)) {
+          // Mark our selected genres as checked.
+          for (let i = 0; i < results.genres.length; i++) {
+            if (book.genre.indexOf(results.genres[i]._id) > -1) {
               results.genres[i].checked = "true";
             }
           }
@@ -112,14 +134,19 @@ exports.book_create_post = [
             title: "Create Book",
             authors: results.authors,
             genres: results.genres,
-            book,
+            book: book,
             errors: errors.array(),
           });
-          return;
         }
       );
+      return;
     } else {
-      book.save((err) => {
+      // Data from form is valid. Save book.
+      book.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        //successful - redirect to new book record.
         res.redirect(book.url);
       });
     }
