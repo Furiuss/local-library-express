@@ -33,17 +33,14 @@ exports.genre_create_post = [
       return;
     } else {
       Genre.findOne({ name: req.body.name }).exec((err, found_genre) => {
-        if (err) {
-          return next(err);
-        }
+        if (err) return next(err);
 
         if (found_genre) {
           res.redirect(found_genre.url);
         } else {
           genre.save((err) => {
-            if (err) {
-              return next(err);
-            }
+            if (err) return next(err);
+
             res.redirect(genre.url);
           });
         }
