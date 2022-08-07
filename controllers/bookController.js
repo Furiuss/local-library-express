@@ -45,24 +45,29 @@ exports.book_detail = function (req, res) {
   res.send("NOT IMPLEMENTED YET: book detail: " + req.params.id);
 };
 
-// Display book create form on GET
+// Display book create form on GET.
 exports.book_create_get = function (req, res, next) {
-  async.parallel({
-    authors(callback) {
-      Author.find(callback);
+  // Get all authors and genres, which we can use for adding to our book.
+  async.parallel(
+    {
+      authors(callback) {
+        Author.find(callback);
+      },
+      genres(callback) {
+        Genre.find(callback);
+      },
     },
-    genres(callback) {
-      Genre.find(callback);
-    },
-    function(err, results) {
-      if (err) return next(err);
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
       res.render("book_form", {
         title: "Create Book",
         authors: results.authors,
         genres: results.genres,
       });
-    },
-  });
+    }
+  );
 };
 
 // Handle book create on POST.
