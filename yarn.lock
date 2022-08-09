@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@prisma/engines@4.1.1":
+  "integrity" "sha512-DCw8L/SS0IXqmj5IW/fMxOXiifnsfjBzDfRhf0j3NFWqvMCh9OtfjmXQZxVgI2mwvJLc/5jzXhkiWT39qS09dA=="
+  "resolved" "https://registry.npmjs.org/@prisma/engines/-/engines-4.1.1.tgz"
+  "version" "4.1.1"
+
 "@types/node@*":
   "integrity" "sha512-6qKpDtoaYLM+5+AFChLhHermMQxc3TOEFIDzrZLPRGHPrLEwqFkkT5Kx3ju05g6X7uDPazz3jHbKPX0KzCjntg=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.6.3.tgz"
@@ -772,6 +777,13 @@
   "integrity" "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="
   "resolved" "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   "version" "2.3.1"
+
+"prisma@^4.1.1":
+  "integrity" "sha512-yw50J8If2dKP4wYIi695zthsCASQFHiogGvUHHWd3falx/rpsD6Sb1LMLRV9nO3iGG3lozxNJ2PSINxK7xwdpg=="
+  "resolved" "https://registry.npmjs.org/prisma/-/prisma-4.1.1.tgz"
+  "version" "4.1.1"
+  dependencies:
+    "@prisma/engines" "4.1.1"
 
 "promise@^6.0.1":
   "integrity" "sha512-O+uwGKreKNKkshzZv2P7N64lk6EP17iXBn0PbUnNQhk+Q0AHLstiTrjkx3v5YBd3cxUe7Sq6KyRhl/A0xUjk7Q=="
